@@ -7,12 +7,11 @@ public class PlatForm : MonoBehaviour
   public GameObject platformPrefab;
     public int count = 20;
 
-    public float timeBetSpawnMin = 1.25f;
-    public float timeBetSpawnMax = 2.25f;
+    public float timeBetSpawnMin = 0.3f;
     private float timeBetSpawn;
 
     public float yMin = -3f;
-    public float yMax = 2f; 
+    public float yMax = 1.5f; 
     private float xPos = 10f; 
 
     private GameObject[] platforms;
@@ -38,18 +37,18 @@ public class PlatForm : MonoBehaviour
 
     void Update() {
 
-        if(Time.time >= lastSpawnTime + timeBetSpawn)
+        if(Time.time >= lastSpawnTime + timeBetSpawnMin)
         {
             lastSpawnTime = Time.time;
 
-            timeBetSpawn = Random.Range(timeBetSpawnMin, timeBetSpawnMax);
 
             float yPos = Random.Range(yMin, yMax);
 
             platforms[currentIndex].SetActive(false);
             platforms[currentIndex].SetActive(true);
 
-            platforms[currentIndex].transform.position = new Vector2(plr.gameObject.transform.position.x + xPos, yPos);
+            platforms[currentIndex].transform.position = new Vector2(xPos, yPos);
+            xPos += 15;
             currentIndex++;
 
             if(currentIndex >= count)

@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
     [Header("Move")]
-    [SerializeField] private float baseSpeed = 5f;
+    [SerializeField] private float baseSpeed = 10f;
     [SerializeField] private float dashSpeed = 2f;
     [Space]
     [SerializeField] private float currentSpeed;
     [Space]
     [Header("Jump")]
     [SerializeField] private float jumpForce;
-    [SerializeField] private bool grounded;
+    [SerializeField] private int grounded;
     [Space]
     [Header("Dead")]
     [SerializeField] private bool isGray;
@@ -24,14 +25,14 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     private GameObject deadText;
     public GameObject srt;
-    
-   
+    public CanvasGroup fade;
+    private bool isPain;
     private void Awake()
     {
         deadText = GameObject.Find("Canvas/DeadText");
         isGray = false;
         deathCount = 10;
-        grounded = true;
+        grounded = 0;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -50,10 +51,11 @@ public class Player : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded < 2)
         {
-            grounded = false;
-            rb.AddForce(transform.up * jumpForce * 100);
+            grounded += 1;
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(0,jumpForce * 100));
         }
     }
 
@@ -71,15 +73,27 @@ public class Player : MonoBehaviour
     private void Move()
     {
         currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * dashSpeed : baseSpeed;
-        
-        if (Input.GetKey(KeyCode.D))
-            transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A))
-            transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+
+        if (isPain)
+        {
+            
+            if (Input.GetKey(KeyCode.D))
+                transform.Translate(Vector3.right * currentSpeed / 2 * Time.deltaTime);
+            if (Input.GetKey(KeyCode.A))
+                transform.Translate(Vector3.left * currentSpeed / 2 * Time.deltaTime);
+        }
+        else
+        {
+            
+            if (Input.GetKey(KeyCode.D))
+                transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+            if (Input.GetKey(KeyCode.A))
+                transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+        }
 
         if (transform.position.y < -10)
         {
-            
+            Dead();
         }
     }
 
@@ -88,7 +102,7 @@ public class Player : MonoBehaviour
         Debug.Log(grounded);
         if (col.gameObject.CompareTag("Ground"))
         {
-            grounded = true;
+            grounded = 0;
         }
 
 
@@ -101,6 +115,17 @@ public class Player : MonoBehaviour
             deathNum.color = new Color(1,0,0,1);
             isGray = true;
         }
+
+        if (col.gameObject.CompareTag("Pain"))
+        {
+            isPain = true;
+            Invoke("NotPain", 3f);
+        }
+    }
+
+    void NotPain()
+    {
+        isPain = false;
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -114,6 +139,7 @@ public class Player : MonoBehaviour
 
     void Dead()
     {
+        fade.DOFade(1, 1f);
         srt.GetComponent<SurviveTime>().isDead = true;
         deathNum.color = new Color(1,0,0,0);
     }
