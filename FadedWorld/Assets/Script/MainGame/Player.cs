@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private float deathCount;
     Rigidbody2D rb;
     private GameObject deadText;
+    public GameObject srt;
+    
+   
     private void Awake()
     {
         deadText = GameObject.Find("Canvas/DeadText");
@@ -73,6 +76,11 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.A))
             transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+
+        if (transform.position.y < -10)
+        {
+            
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D col)
@@ -106,7 +114,7 @@ public class Player : MonoBehaviour
 
     void Dead()
     {
+        srt.GetComponent<SurviveTime>().isDead = true;
         deathNum.color = new Color(1,0,0,0);
-        SceneManager.LoadScene(2);
     }
 }

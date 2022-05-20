@@ -18,4 +18,9 @@ public class SceneButtonManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+    
+    public void MainButton()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
