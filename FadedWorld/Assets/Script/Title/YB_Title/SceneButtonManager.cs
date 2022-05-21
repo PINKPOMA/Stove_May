@@ -13,6 +13,7 @@ public class SceneButtonManager : MonoBehaviour
     public void StartButton()
     {
         SceneManager.LoadScene(1);
+        SoundManager.instance.PlayButtonClickSound();
     }
 
     public void ExitButton()
@@ -27,6 +28,7 @@ public class SceneButtonManager : MonoBehaviour
     public void MainButton()
     {
         SceneManager.LoadScene(0);
+        SoundManager.instance.PlayButtonClickSound();
     }
     
     
@@ -35,10 +37,12 @@ public class SceneButtonManager : MonoBehaviour
    {
        isActive = !isActive;
         HelpMessagePanel.SetActive(isActive);
+        SoundManager.instance.PlayButtonClickSound();
     }
 
    public void OnClickNextButton()
    {
+       SoundManager.instance.PlayButtonClickSound();
        explainText.text = "생존 가능 시간: 회색에서 버틸 수 있는 시간입니다. (10초)\n\n" +
                           "시계: 생존 가능 시간을 5초 추가해줍니다.\n\n" +
                           "회색 지대, 회색 비: 닿아있으면 생존 가능 시간이 줄어듭니다.\n\n" +
@@ -48,6 +52,7 @@ public class SceneButtonManager : MonoBehaviour
 
    public void OnClickPerivousButton()
    {
+       SoundManager.instance.PlayButtonClickSound();
        explainText.text = "이동 방법: a, d\n\n" +
                           "점프: space (최대 2번)\n\n" +
                           "걷기: shift키 누른 상태로 이동\n\n" +

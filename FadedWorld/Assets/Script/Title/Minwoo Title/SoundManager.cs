@@ -14,6 +14,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip clockSound;
 
     private void Awake()
     {
@@ -42,5 +44,15 @@ public class SoundManager : MonoBehaviour
     public void PlayDieSound()
     {
         audioSource.PlayOneShot(dieSound);
+    }
+
+    public void PlayButtonClickSound()
+    {
+        audioSource.PlayOneShot(buttonClickSound);
+    }
+
+    public void PlayClockSound()
+    {
+        audioSource.PlayOneShot(clockSound);
     }
 }

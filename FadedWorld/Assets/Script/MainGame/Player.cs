@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
             grounded += 1;
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0,jumpForce * 100));
+            SoundManager.instance.PlayJumpSound();
             animator.SetBool("IsJump", true);
             animator.SetBool("IsIdle", false);
         }
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Item"))
         {
             deathCount += 5;
+            SoundManager.instance.PlayClockSound();
             if (deathCount > 10)
             {
                 deathCount = 10;
@@ -209,6 +211,7 @@ public class Player : MonoBehaviour
     {
         fade.DOFade(1, 1f);
         var srt = GameObject.FindWithTag("Score").GetComponent<SurviveTime>();
+        SoundManager.instance.PlayDieSound();
         srt.isDead = true;
         deathNum.color = new Color(1,0,0,0);
     }

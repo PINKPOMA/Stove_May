@@ -478,7 +478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PressEnterToMenu...
+  m_Text: Press Enter To Menu...
 --- !u!222 &1460527399
 CanvasRenderer:
   m_ObjectHideFlags: 0
