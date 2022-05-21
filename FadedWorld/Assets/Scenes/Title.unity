@@ -413,6 +413,9 @@ MonoBehaviour:
   dieSound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
   buttonClickSound: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
   clockSound: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
+  titleBgmSound: {fileID: 8300000, guid: 5bb479964ad525d439ee45cf52297974, type: 3}
+  mainBgmSound: {fileID: 8300000, guid: 9961b7daf9c89b74ab6f435c05b70d7c, type: 3}
+  endBgmSound: {fileID: 8300000, guid: e5a7e29cf4976724ba4bc3bf51999849, type: 3}
 --- !u!4 &243073454
 Transform:
   m_ObjectHideFlags: 0
@@ -437,11 +440,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 5bb479964ad525d439ee45cf52297974, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

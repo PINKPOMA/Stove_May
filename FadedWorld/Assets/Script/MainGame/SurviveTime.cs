@@ -57,6 +57,7 @@ public class SurviveTime : MonoBehaviour
                     oneScene = true;
                     surviveTime = 0;
                     isDead = false;
+                    SoundManager.instance.PlayBGM("BadEnding");
                     SceneManager.LoadScene(3);
 
                 }
@@ -65,6 +66,7 @@ public class SurviveTime : MonoBehaviour
                     oneScene = true;
                     surviveTime = 0;
                     isDead = false;
+                    SoundManager.instance.PlayBGM("HighScore");
                     SceneManager.LoadScene(2);
                 }
             }

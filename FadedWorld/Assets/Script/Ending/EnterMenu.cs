@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class EnterMenu : MonoBehaviour
         sct.text = $"최고기록: {scoreMaster.maxScore}초";
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            SoundManager.instance.PlayBGM("Title");
             SceneManager.LoadScene(0);
         }
     }
