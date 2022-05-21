@@ -77,7 +77,7 @@ public class SurviveTime : MonoBehaviour
 
     void Timep()
     {
-        timeText = GameObject.FindWithTag("timeT").GetComponent<Text>();
+        timeText = GameObject.FindWithTag("timeT")?.GetComponent<Text>();
         surviveTime += Time.deltaTime;
         timeText.text = $"생존시간: {String.Format("{0:N0}", surviveTime)}s";
     }
