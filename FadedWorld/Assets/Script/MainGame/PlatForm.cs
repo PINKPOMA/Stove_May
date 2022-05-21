@@ -7,7 +7,7 @@ public class PlatForm : MonoBehaviour
   public GameObject platformPrefab;
     public int count = 20;
 
-    public float timeBetSpawnMin = 0.1f;
+    public float timeBetSpawnMin = 0.025f;
     private float timeBetSpawn;
 
     public float yMin = -2.5f;
