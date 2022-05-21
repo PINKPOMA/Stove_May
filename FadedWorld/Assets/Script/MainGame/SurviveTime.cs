@@ -8,46 +8,65 @@ using UnityEngine.UI;
 
 public class SurviveTime : MonoBehaviour
 {
+    private static SurviveTime instance = null;
     [Header("Survive")]
     public float surviveTime;
-    [SerializeField] private int maxScore;
-    [SerializeField] private Text timeText;
-    [Space]
-    [Header("Start")]
-    [SerializeField] Text startTime;
+    public int maxScore;
+    private Text timeText;
     public bool isDead;
-
-    private void Start()
+    private bool oneScene;
+    private Text highScoreText;
+    void Awake()
     {
-      //  Time.timeScale = 0;
-        //StartCoroutine(StartCount());
-    }
-
-    IEnumerator StartCount()
-    {
-        for (int i = 3; i >= 0; i--)
+        if (null == instance)
         {
-            startTime.DOFade(1, 1f);
-            startTime.text = i.ToString();
-            startTime.DOFade(0, 1f);
-            Debug.Log(i);
-            yield return new WaitForSeconds(1f);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        startTime.text = "Start!";
-        startTime.DOFade(0, 2f);
-        Time.timeScale = 1;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+    public static SurviveTime Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "BadEnding" || SceneManager.GetActiveScene().name == "HighScore")
+        {
+            oneScene = false;
+        }
         if (isDead)
         {
-            if (maxScore < (int)surviveTime)
+            if (!oneScene)
             {
-                SceneManager.LoadScene(3);
-            }
-            else
-            {
-                SceneManager.LoadScene(2);
+                Debug.Log("발동");
+                if (maxScore < (int)surviveTime)
+                {
+                    maxScore = (int)surviveTime;
+                    oneScene = true;
+                    surviveTime = 0;
+                    isDead = false;
+                    SceneManager.LoadScene(3);
+
+                }
+                else
+                {
+                    oneScene = true;
+                    surviveTime = 0;
+                    isDead = false;
+                    SceneManager.LoadScene(2);
+                }
             }
         }
         else
@@ -58,6 +77,7 @@ public class SurviveTime : MonoBehaviour
 
     void Timep()
     {
+        timeText = GameObject.FindWithTag("timeT").GetComponent<Text>();
         surviveTime += Time.deltaTime;
         timeText.text = $"생존시간: {String.Format("{0:N0}", surviveTime)}s";
     }

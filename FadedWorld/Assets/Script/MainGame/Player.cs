@@ -20,11 +20,11 @@ public class Player : MonoBehaviour
     [Space]
     [Header("Dead")]
     [SerializeField] private bool isGray;
+    [SerializeField] private bool isRain;
     [SerializeField] private Text deathNum;
     private float deathCount;
     Rigidbody2D rb;
     private GameObject deadText;
-    public GameObject srt;
     public CanvasGroup fade;
     private bool isPain;
     private void Awake()
@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
         Jump();
         InGrayZone();
         Bar();
+        InRainZone();
     }
 
     void Bar()
@@ -63,11 +64,34 @@ public class Player : MonoBehaviour
     {
         if (isGray)
         {
+            deathNum.color = new Color(1,0,0,1);
             deathCount -= Time.deltaTime;
             if (deathCount <= 0)
             {
                 Dead();
             }
+        }
+        else if (!isRain)
+        {
+            
+            deathNum.color = new Color(1,0,0,0);
+        }
+    }
+    void InRainZone()
+    {
+        if (isRain)
+        {
+            deathNum.color = new Color(1,0,0,1);
+            deathCount -= Time.deltaTime;
+            if (deathCount <= 0)
+            {
+                Dead();
+            }
+        }        
+        else if (!isGray)
+        {
+            
+            deathNum.color = new Color(1,0,0,0);
         }
     }
     private void Move()
@@ -115,7 +139,11 @@ public class Player : MonoBehaviour
             deathNum.color = new Color(1,0,0,1);
             isGray = true;
         }
-
+        if (col.gameObject.CompareTag("Rain"))
+        {
+            deathNum.color = new Color(1,0,0,1);
+            isRain = true;
+        }
         if (col.gameObject.CompareTag("Pain"))
         {
             isPain = true;
@@ -135,12 +163,27 @@ public class Player : MonoBehaviour
             deathNum.color = new Color(1,0,0,0);
             isGray = false;
         }
+        if (other.gameObject.CompareTag("Rain"))
+        {
+            deathNum.color = new Color(1,0,0,0);
+            isRain = false;
+        }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            deathCount += 5;
+            if (deathCount > 10)
+            {
+                deathCount = 10;
+            }
+            Destroy(other.gameObject);
+        }
     }
 
     void Dead()
     {
         fade.DOFade(1, 1f);
-        srt.GetComponent<SurviveTime>().isDead = true;
+        var srt = GameObject.FindWithTag("Score").GetComponent<SurviveTime>();
+        srt.isDead = true;
         deathNum.color = new Color(1,0,0,0);
     }
 }
