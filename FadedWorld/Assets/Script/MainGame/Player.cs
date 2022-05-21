@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public CanvasGroup fade;
     private Animator animator;
     private bool isPain;
+    private SpriteRenderer rend;
     private void Awake()
     {
         deadText = GameObject.Find("Canvas/DeadText");
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         grounded = 0;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -107,22 +109,36 @@ public class Player : MonoBehaviour
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsJump", false);
             animator.SetFloat("IsRun", 0.5f);
-            
+
             if (Input.GetKey(KeyCode.D))
+            {
+                rend.flipX = false;
                 transform.Translate(Vector3.right * currentSpeed / 2 * Time.deltaTime);
+            }
+
             if (Input.GetKey(KeyCode.A))
+            {
+                rend.flipX = true;
                 transform.Translate(Vector3.left * currentSpeed / 2 * Time.deltaTime);
+            }
         }
         else
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsJump", false);
             animator.SetFloat("IsRun", 1f);
-            
+
             if (Input.GetKey(KeyCode.D))
+            {
+                rend.flipX = false;
                 transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+            }
+
             if (Input.GetKey(KeyCode.A))
+            {
+                rend.flipX = true;
                 transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+            }
         }
 
         if (transform.position.y < -10)
