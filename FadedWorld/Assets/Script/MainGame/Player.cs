@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     private GameObject deadText;
     public CanvasGroup fade;
+    private Animator animator;
     private bool isPain;
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         deathCount = 10;
         grounded = 0;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
             grounded += 1;
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0,jumpForce * 100));
+            animator.SetBool("IsJump", true);
+            animator.SetBool("IsIdle", false);
         }
     }
 
@@ -100,6 +104,9 @@ public class Player : MonoBehaviour
 
         if (isPain)
         {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsJump", false);
+            animator.SetFloat("IsRun", 0.5f);
             
             if (Input.GetKey(KeyCode.D))
                 transform.Translate(Vector3.right * currentSpeed / 2 * Time.deltaTime);
@@ -108,6 +115,9 @@ public class Player : MonoBehaviour
         }
         else
         {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsJump", false);
+            animator.SetFloat("IsRun", 1f);
             
             if (Input.GetKey(KeyCode.D))
                 transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);

@@ -503,7 +503,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2735849, g: 0.12751254, b: 0.008775347, a: 0}
+  m_BackGroundColor: {r: 0.2924528, g: 0.27503872, b: 0.26044855, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -983,7 +983,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1419229559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1086,7 +1086,7 @@ Animator:
   m_GameObject: {fileID: 1419229557}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2646cc665b54e074fbee22000f012280, type: 2}
+  m_Controller: {fileID: 9100000, guid: d4e76f3180fb65445a4d0654dafb81ad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
