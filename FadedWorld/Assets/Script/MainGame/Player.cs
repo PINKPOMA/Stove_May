@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * dashSpeed : baseSpeed;
+        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed : baseSpeed * dashSpeed;
 
         if (isPain)
         {
