@@ -18,11 +18,11 @@ public class MoveBackground : MonoBehaviour
 
 
 
-		if (x <= PontoDeDestino){
+		if (x <= PontoDeDestino + player.transform.position.x){
 
 			Debug.Log ("hhhh");
 			x = PontoOriginal;
-			transform.position = new Vector3 (x, transform.position.y, transform.position.z);
+			transform.position = new Vector3 (x + player.transform.position.x, transform.position.y, transform.position.z);
 		}
 
 

@@ -198,12 +198,12 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Item"))
         {
             deathCount += 5;
-            SoundManager.instance.PlayClockSound();
             if (deathCount > 10)
             {
                 deathCount = 10;
             }
             Destroy(other.gameObject);
+            SoundManager.instance.PlayClockSound();
         }
     }
 
