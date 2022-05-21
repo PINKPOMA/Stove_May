@@ -202,7 +202,7 @@ MonoBehaviour:
   player: {fileID: 1419229563}
   speed: -1.4
   PontoDeDestino: -25.49
-  PontoOriginal: 27.84
+  PontoOriginal: -27.84
 --- !u!212 &71529923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   player: {fileID: 1419229563}
   speed: -1.25
   PontoDeDestino: -25.49
-  PontoOriginal: 27.84
+  PontoOriginal: -27.84
 --- !u!212 &142060525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -862,8 +862,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380472331}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02311945, y: 0.5728126, z: -7.9988728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -17.998873}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 81557630}
@@ -876,8 +876,8 @@ Transform:
   - {fileID: 1287981007}
   - {fileID: 945921289}
   - {fileID: 913805653}
-  m_Father: {fileID: 895395931}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &396859460
 GameObject:
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   player: {fileID: 1419229563}
   speed: -1.25
   PontoDeDestino: -25.49
-  PontoOriginal: 27.84
+  PontoOriginal: -27.84
 --- !u!212 &477664221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1737,8 +1737,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.7778805, y: 0.09118738, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 380472332}
+  m_Children: []
   m_Father: {fileID: 1419229561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3454,7 +3453,7 @@ MonoBehaviour:
   player: {fileID: 1419229563}
   speed: -1.4
   PontoDeDestino: -25.49
-  PontoOriginal: 27.84
+  PontoOriginal: -27.84
 --- !u!212 &2093964307
 SpriteRenderer:
   m_ObjectHideFlags: 0

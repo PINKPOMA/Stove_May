@@ -104,6 +104,12 @@ public class Player : MonoBehaviour
     private void Move()
     {
         currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed : baseSpeed * dashSpeed;
+        float h = Input.GetAxisRaw("Horizontal");
+
+        if (h == 0)
+        {
+            animator.SetBool("IsIdle", true);
+        }
 
         if (isPain)
         {
@@ -111,34 +117,40 @@ public class Player : MonoBehaviour
             animator.SetBool("IsJump", false);
             animator.SetFloat("IsRun", 0.5f);
 
-            if (Input.GetKey(KeyCode.D))
+            if (h > 0)
             {
                 rend.flipX = false;
-                transform.Translate(Vector3.right * currentSpeed / 2 * Time.deltaTime);
+                transform.Translate(Vector3.right * h * currentSpeed / 2 * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.A))
+            else if (h < 0)
             {
                 rend.flipX = true;
-                transform.Translate(Vector3.left * currentSpeed / 2 * Time.deltaTime);
+                transform.Translate(Vector3.right * h * currentSpeed / 2 * Time.deltaTime);
             }
         }
+        
         else
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsJump", false);
             animator.SetFloat("IsRun", 1f);
 
-            if (Input.GetKey(KeyCode.D))
+            if (h == 0)
+            {
+                animator.SetBool("IsIdle", true);
+            }
+            
+            if (h > 0)
             {
                 rend.flipX = false;
-                transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+                transform.Translate(Vector3.right * h * currentSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.A))
+            else if (h < 0)
             {
                 rend.flipX = true;
-                transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+                transform.Translate(Vector3.right * h * currentSpeed * Time.deltaTime);
             }
         }
 
