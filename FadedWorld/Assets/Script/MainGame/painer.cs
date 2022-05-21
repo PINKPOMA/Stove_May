@@ -23,11 +23,5 @@ public class painer : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
-    {
-        if (transform.position.x < GameObject.Find("player").transform.position.x)
-        {
-            Destroy(gameObject);
-        }
-}
+   
 }

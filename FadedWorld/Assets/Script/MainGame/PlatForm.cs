@@ -7,12 +7,12 @@ public class PlatForm : MonoBehaviour
   public GameObject platformPrefab;
     public int count = 20;
 
-    public float timeBetSpawnMin = 0.3f;
+    public float timeBetSpawnMin = 0.1f;
     private float timeBetSpawn;
 
-    public float yMin = -3f;
+    public float yMin = -2.5f;
     public float yMax = 1.5f; 
-    private float xPos = 10f; 
+    private float xPos = 8f; 
 
     private GameObject[] platforms;
     private int currentIndex = 0;
@@ -48,7 +48,7 @@ public class PlatForm : MonoBehaviour
             platforms[currentIndex].SetActive(true);
 
             platforms[currentIndex].transform.position = new Vector2(xPos, yPos);
-            xPos += 15;
+            xPos += 10;
             currentIndex++;
 
             if(currentIndex >= count)
