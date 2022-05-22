@@ -12,7 +12,7 @@ public class SceneButtonManager : MonoBehaviour
     [SerializeField] private GameObject HelpMessagePanel;
     public void StartButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         SoundManager.instance.PlayBGM("YB_Main");
         SoundManager.instance.PlayButtonClickSound();
     }
@@ -28,7 +28,7 @@ public class SceneButtonManager : MonoBehaviour
     
     public void MainButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         SoundManager.instance.PlayBGM("Title");
         SoundManager.instance.PlayButtonClickSound();
     }

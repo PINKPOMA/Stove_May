@@ -11,7 +11,7 @@ public class SurviveTime : MonoBehaviour
     private static SurviveTime instance = null;
     [Header("Survive")]
     public float surviveTime;
-    public int maxScore;
+    public int maxScore = 0;
     private Text timeText;
     public bool isDead;
     private bool oneScene;
@@ -42,6 +42,18 @@ public class SurviveTime : MonoBehaviour
 
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            surviveTime = 0;
+        }
+        if (SceneManager.GetActiveScene().name == "YB_Main")
+        {
+            var wal = GameObject.Find("GrayWall").GetComponent<Wall>();
+            if (!wal.isWark)
+            {
+                surviveTime = 0;
+            }
+        }
         if (SceneManager.GetActiveScene().name == "BadEnding" || SceneManager.GetActiveScene().name == "HighScore")
         {
             oneScene = false;
@@ -53,12 +65,12 @@ public class SurviveTime : MonoBehaviour
                 Debug.Log("발동");
                 if (maxScore < (int)surviveTime)
                 {
-                    maxScore = (int)surviveTime;
                     oneScene = true;
+                    maxScore = (int)surviveTime;
                     surviveTime = 0;
                     isDead = false;
                     SoundManager.instance.PlayBGM("BadEnding");
-                    SceneManager.LoadScene(3);
+                    SceneManager.LoadScene(4);
 
                 }
                 else
@@ -67,7 +79,7 @@ public class SurviveTime : MonoBehaviour
                     surviveTime = 0;
                     isDead = false;
                     SoundManager.instance.PlayBGM("HighScore");
-                    SceneManager.LoadScene(2);
+                    SceneManager.LoadScene(3);
                 }
             }
         }

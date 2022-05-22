@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,9 +14,7 @@ public class EnterMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SoundManager.instance.PlayBGM("Title");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
-    
-    
 }

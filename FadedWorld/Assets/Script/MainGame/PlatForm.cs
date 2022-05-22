@@ -12,7 +12,7 @@ public class PlatForm : MonoBehaviour
 
     public float yMin = -2.5f;
     public float yMax = 1.5f; 
-    private float xPos = 8f; 
+    private float xPos = 10f; 
 
     private GameObject[] platforms;
     private int currentIndex = 0;
@@ -48,7 +48,7 @@ public class PlatForm : MonoBehaviour
             platforms[currentIndex].SetActive(true);
 
             platforms[currentIndex].transform.position = new Vector2(xPos, yPos);
-            xPos += 10;
+            xPos += 12;
             currentIndex++;
 
             if(currentIndex >= count)
