@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class EnterMenu : MonoBehaviour
 {
-    public Text sct;
     void Update()
     {
-        var scoreMaster = GameObject.FindWithTag("Score").GetComponent<SurviveTime>();
-        sct.text = $"최고기록: {scoreMaster.maxScore}초";
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SoundManager.instance.PlayBGM("Title");
             SceneManager.LoadScene(1);
+            var score = GameObject.FindWithTag("Score").GetComponent<SurviveTime>();
+            score.nowScore = 0;
         }
     }
 }

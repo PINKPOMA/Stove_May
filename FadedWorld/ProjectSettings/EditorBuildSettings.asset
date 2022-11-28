@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/YB_Main.unity
     guid: 41603193caaa0f94c8dd39c60b2b1875
   - enabled: 1
-    path: Assets/Scenes/BadEnding.unity
+    path: Assets/Scenes/Ending.unity
     guid: d4acdc145021eb040998926394010cd6
-  - enabled: 1
-    path: Assets/Scenes/HighScore.unity
-    guid: 767e265d21d3f3c4e80ebac07bd9ea56
   m_configObjects: {}

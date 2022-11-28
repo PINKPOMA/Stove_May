@@ -222,9 +222,9 @@ public class Player : MonoBehaviour
     void Dead()
     {
         fade.DOFade(1, 1f);
-        var srt = GameObject.FindWithTag("Score").GetComponent<SurviveTime>();
+        var srt = GameObject.FindWithTag("MainTimer").GetComponent<MainTimer>();
         SoundManager.instance.PlayDieSound();
-        srt.isDead = true;
+        srt.Dead();
         deathNum.color = new Color(1,0,0,0);
     }
 }
